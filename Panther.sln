@@ -3,9 +3,43 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panther.NetCore", "src\Panther.NetCore\Panther.NetCore.csproj", "{6E6F8797-BC88-4FEE-AE3A-E0518917A5BA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4B3D0566-D73D-41C9-AAD2-6175EF25ADE7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{778CD177-DBC1-44A4-9362-77CB9CE33449}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panther.Core", "src\Core\Panther.Core\Panther.Core.csproj", "{28D1B938-1D04-42CD-BE89-58482D882A78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panther.Core.Library", "src\Core\Panther.Core.Library\Panther.Core.Library.csproj", "{0D10BA13-8DE1-4334-8EF4-E057E04B3B66}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6E6F8797-BC88-4FEE-AE3A-E0518917A5BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E6F8797-BC88-4FEE-AE3A-E0518917A5BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E6F8797-BC88-4FEE-AE3A-E0518917A5BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E6F8797-BC88-4FEE-AE3A-E0518917A5BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D1B938-1D04-42CD-BE89-58482D882A78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D1B938-1D04-42CD-BE89-58482D882A78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D1B938-1D04-42CD-BE89-58482D882A78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D1B938-1D04-42CD-BE89-58482D882A78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D10BA13-8DE1-4334-8EF4-E057E04B3B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D10BA13-8DE1-4334-8EF4-E057E04B3B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D10BA13-8DE1-4334-8EF4-E057E04B3B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D10BA13-8DE1-4334-8EF4-E057E04B3B66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6E6F8797-BC88-4FEE-AE3A-E0518917A5BA} = {4B3D0566-D73D-41C9-AAD2-6175EF25ADE7}
+		{778CD177-DBC1-44A4-9362-77CB9CE33449} = {4B3D0566-D73D-41C9-AAD2-6175EF25ADE7}
+		{28D1B938-1D04-42CD-BE89-58482D882A78} = {778CD177-DBC1-44A4-9362-77CB9CE33449}
+		{0D10BA13-8DE1-4334-8EF4-E057E04B3B66} = {778CD177-DBC1-44A4-9362-77CB9CE33449}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32B0EFDA-E387-4284-8B14-17BBF0717FA4}
