@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Panther.NetCore.Views;
+using System;
+using System.IO;
 using System.Windows;
 
 namespace Panther.NetCore
@@ -13,5 +12,37 @@ namespace Panther.NetCore
     /// </summary>
     public partial class App : Application
     {
+        public IServiceProvider ServiceProvider { get; private set; }
+        public IConfiguration Configuration { get; private set; }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            InitConfiguration();
+            InitServiceProvider();
+
+            ServiceProvider.GetRequiredService<MainWindow>().Show();
+        }
+
+        private void InitConfiguration()
+        {
+            var configBuilder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false, true);
+
+            Configuration = configBuilder.Build();
+        }
+
+        private void InitServiceProvider()
+        {
+            var serviceCollection = new ServiceCollection();
+            ConfigureServices(serviceCollection);
+
+            ServiceProvider = serviceCollection.BuildServiceProvider();
+        }
+
+        private void ConfigureServices(IServiceCollection services)
+        {
+            services.AddTransient<MainWindow>();
+        }
     }
 }
