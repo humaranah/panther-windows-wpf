@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Panther.Core\Panther.Core.csproj" />
+    <ProjectReference Include="..\Panther.Core.Abstractions\Panther.Core.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>

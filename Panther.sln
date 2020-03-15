@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4B3D0566-D73
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{778CD177-DBC1-44A4-9362-77CB9CE33449}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panther.Core", "src\Core\Panther.Core\Panther.Core.csproj", "{28D1B938-1D04-42CD-BE89-58482D882A78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panther.Core.Abstractions", "src\Core\Panther.Core.Abstractions\Panther.Core.Abstractions.csproj", "{28D1B938-1D04-42CD-BE89-58482D882A78}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Panther.Core.Library", "src\Core\Panther.Core.Library\Panther.Core.Library.csproj", "{0D10BA13-8DE1-4334-8EF4-E057E04B3B66}"
 EndProject
