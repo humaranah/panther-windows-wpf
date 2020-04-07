@@ -14,6 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Core\Panther.Core.Library\Panther.Core.Library.csproj" />
+    <ProjectReference Include="..\Core\Panther.Core.Player\Panther.Core.Player.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
