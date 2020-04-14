@@ -27,7 +27,5 @@ jobs:
     - name: Build
       shell: pwsh
       run: .\build.ps1
-      env:
-        BUILD_NUMBER: ${env:BUILD_NUMBER}
     - name: Test
       run: dotnet test --no-restore --verbosity normal
