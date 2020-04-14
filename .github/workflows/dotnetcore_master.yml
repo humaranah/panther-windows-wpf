@@ -26,7 +26,6 @@ jobs:
       run: dotnet restore
     - name: Build
       shell: pwsh
-      run: |
-        ./scripts/build.ps1
+      run: .\build
     - name: Test
       run: dotnet test --no-restore --verbosity normal
