@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Panther.Core.Player.Settings;
 
 namespace Panther.Core.Player.Extensioins
 {
@@ -9,6 +11,13 @@ namespace Panther.Core.Player.Extensioins
             return services
                 .AddSingleton<AudioFileReaderAccessor>()
                 .AddSingleton<IPlayerService, PlayerService>();
+        }
+
+        public static IServiceCollection AddPlayerQueue(IServiceCollection services, IConfiguration configuration)
+        {
+            return services
+                .Configure<QueueSettings>(configuration.GetSection(nameof(QueueSettings)))
+                .AddSingleton<IQueueService, QueueService>();
         }
     }
 }

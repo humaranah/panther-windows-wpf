@@ -1,4 +1,5 @@
-﻿using Panther.Core.Extensions;
+﻿using Microsoft.Extensions.Options;
+using Panther.Core.Extensions;
 using Panther.Core.Models;
 using Panther.Core.Player.Settings;
 using System;
@@ -13,13 +14,13 @@ namespace Panther.Core.Player
         private readonly List<Song> _queue;
         private bool _shuffle;
 
-        public QueueService(QueueSettings settings)
+        public QueueService(IOptions<QueueSettings> settings)
         {
             _queue = new List<Song>();
             _indexMap = new List<int>();
 
-            Repeat = settings.Repeat;
-            Shuffle = settings.Shuffle;
+            Repeat = settings.Value.Repeat;
+            Shuffle = settings.Value.Shuffle;
         }
 
         public Song Current => _queue[_indexMap[CurrentIndex]];
