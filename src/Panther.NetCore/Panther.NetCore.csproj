@@ -14,8 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Panther.Core.Library\Panther.Core.Library.csproj" />
-    <ProjectReference Include="..\Core\Panther.Core.Player\Panther.Core.Player.csproj" />
+    <ProjectReference Include="..\Core\Panther.Core.DependencyInjection\Panther.Core.DependencyInjection.csproj" />
   </ItemGroup>
 
   <ItemGroup>

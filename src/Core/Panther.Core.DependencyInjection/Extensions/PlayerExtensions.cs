@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Panther.Core.Player;
 using Panther.Core.Player.Settings;
 
-namespace Panther.Core.Player.Extensioins
+namespace Panther.Core.DependencyInjection.Extensions
 {
-    public static class DependencyExtensions
+    public static class PlayerExtensions
     {
         public static IServiceCollection AddPlayer(IServiceCollection services)
         {
