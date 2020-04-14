@@ -7,14 +7,14 @@ namespace Panther.Core.DependencyInjection.Extensions
 {
     public static class PlayerExtensions
     {
-        public static IServiceCollection AddPlayer(IServiceCollection services)
+        public static IServiceCollection AddPlayerServices(this IServiceCollection services)
         {
             return services
                 .AddSingleton<AudioFileReaderAccessor>()
                 .AddSingleton<IPlayerService, PlayerService>();
         }
 
-        public static IServiceCollection AddPlayerQueue(IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddPlayerQueueServices(this IServiceCollection services, IConfiguration configuration)
         {
             return services
                 .Configure<QueueSettings>(configuration.GetSection(nameof(QueueSettings)))
