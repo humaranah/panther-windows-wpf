@@ -1,9 +1,9 @@
-name: .NET Core Compilation
+name: .NET Core Develop Compilation
 
 on:
-  push:
-    branches-ignore:
-      - master
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
       uses: einaregilsson/build-number@v2 
       with:
         token: ${{secrets.github_token}}
-    - name: Print new build number
+    - name: Print build number
       run: echo "Build number ${env:BUILD_NUMBER}"
     - uses: actions/checkout@v2
     - name: Setup .NET Core
