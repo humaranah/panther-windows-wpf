@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Panther.Core.Library;
+using Panther.Core.Data;
 using System;
 using System.Reflection;
 

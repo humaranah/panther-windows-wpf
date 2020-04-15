@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Panther.Core.Models;
 
-namespace Panther.Core.Library
+namespace Panther.Core.Data
 {
     public class LibraryDbContext : DbContext
     {

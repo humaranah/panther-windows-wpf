@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Panther.Core.Data;
 using Panther.Core.Library.Tests.TestData;
 using Panther.Core.Models;
 using System.Threading.Tasks;
