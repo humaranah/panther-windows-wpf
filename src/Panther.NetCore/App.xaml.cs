@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Panther.NetCore.Views;
+using Panther.NetCore.Extensions;
+using Panther.Windows.Views;
 using System;
 using System.Windows;
 using static Panther.NetCore.Startup;
@@ -20,7 +21,7 @@ namespace Panther.NetCore
             Configuration = InitConfiguration();
             InitServiceProvider();
 
-            ServiceProvider.GetRequiredService<MainWindow>().Show();
+            ServiceProvider.GetService<MainWindow>().Show();
         }
 
         private void InitServiceProvider()

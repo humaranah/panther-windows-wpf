@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Panther.Core.DependencyInjection\Panther.Core.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Desktop\Windows\Panther.Windows.Views\Panther.Windows.Views.csproj" />
   </ItemGroup>
 
   <ItemGroup>

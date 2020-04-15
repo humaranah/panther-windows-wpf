@@ -1,9 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Panther.NetCore.Views;
+using Panther.Windows.Views;
+using System;
 
 namespace Panther.NetCore.Extensions
 {
-    public static class ViewsExtensions
+    public static class DependencyInjectionExtensions
     {
         public static IServiceCollection AddViews(this IServiceCollection services)
         {
