@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Panther.Core.Models;
+using System.Reflection;
 
 namespace Panther.Core.Library
 {
@@ -9,11 +10,6 @@ namespace Panther.Core.Library
         public DbSet<Album> Albums { get; set; }
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Playlist> Playlists { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=library.db");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -60,6 +56,8 @@ namespace Panther.Core.Library
                 .HasOne(songPlaylist => songPlaylist.Playlist)
                 .WithMany(playlist => playlist.SongPlaylists)
                 .HasForeignKey(songPlaylist => songPlaylist.PlaylistId);
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

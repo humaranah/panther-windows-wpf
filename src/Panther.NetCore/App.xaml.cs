@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Panther.NetCore.Extensions;
 using Panther.Windows.Views;
 using System;
 using System.Windows;
@@ -30,6 +29,7 @@ namespace Panther.NetCore
             ConfigureServices(serviceCollection, Configuration);
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
+            Configure(ServiceProvider);
         }
     }
 }

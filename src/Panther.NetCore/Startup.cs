@@ -2,7 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Panther.Core.DependencyInjection.Extensions;
 using Panther.NetCore.Extensions;
+using System;
 using System.IO;
+using System.Linq;
 
 namespace Panther.NetCore
 {
@@ -20,9 +22,15 @@ namespace Panther.NetCore
         public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
         {
             services
+                .AddLibraryServices()
                 .AddPlayerServices()
                 .AddPlayerQueueServices(configuration)
                 .AddViews();
+        }
+
+        public static void Configure(IServiceProvider serviceProvider)
+        {
+            serviceProvider.ConfigureLibrary();
         }
     }
 }
