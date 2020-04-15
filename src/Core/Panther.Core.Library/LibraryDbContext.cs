@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Panther.Core.Models;
-using System.Reflection;
 
 namespace Panther.Core.Library
 {
     public class LibraryDbContext : DbContext
     {
+        public LibraryDbContext(DbContextOptions options) : base(options) { }
+
         public DbSet<Song> Songs { get; set; }
         public DbSet<Album> Albums { get; set; }
         public DbSet<Artist> Artists { get; set; }
