@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace Panther.Core.Data
 {
@@ -18,7 +19,18 @@ namespace Panther.Core.Data
             _dbSet = context.Set<TEntity>();
         }
 
-        public virtual IEnumerable<TEntity> Get(
+        public Task<int> CountAsync(Expression<Func<TEntity, bool>> filter = null)
+        {
+            IQueryable<TEntity> query = _dbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            return query.CountAsync();
+        }
+
+        public virtual Task<List<TEntity>> GetAsync(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable, IOrderedQueryable<TEntity>> orderBy = null,
             string includedProperties = "")
@@ -39,15 +51,18 @@ namespace Panther.Core.Data
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return orderBy(query).ToListAsync();
             }
 
-            return query.ToList();
+            return query.ToListAsync();
         }
 
-        public virtual TEntity GetById(long id) => _dbSet.Find(id);
+        public virtual ValueTask<TEntity> GetByIdAsync(long id) => _dbSet.FindAsync(id);
 
-        public virtual void Insert(TEntity entity) => _dbSet.Add(entity);
+        public virtual async Task InsertAsync(TEntity entity)
+        {
+            await _dbSet.AddAsync(entity);
+        }
 
         public virtual void Remove(long id)
         {

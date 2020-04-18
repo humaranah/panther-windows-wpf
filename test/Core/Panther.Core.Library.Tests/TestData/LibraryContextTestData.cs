@@ -11,7 +11,7 @@ namespace Panther.Core.Library.Tests.TestData
             {
                 new object[] { new Artist{ Id = 0, Name = "Dummy artist" } },
                 new object[] { new Album { Id = 0, ArtistId = 0, Name = "Dummy album"} },
-                new object[] { new Song { Id = 0, AlbumId = 0, ArtistId = 0, FileName = "dummy.mp3"} }
+                new object[] { new Song { Id = 0, AlbumId = 0, FileName = "dummy.mp3"} }
             };
         }
     }

@@ -18,11 +18,6 @@ namespace Panther.Core.Models
         /// Album id
         /// </summary>
         public long AlbumId { get; set; }
-
-        /// <summary>
-        /// Artist id
-        /// </summary>
-        public long ArtistId { get; set; }
         #endregion
 
 
@@ -45,7 +40,7 @@ namespace Panther.Core.Models
         /// <summary>
         /// Track number
         /// </summary>
-        public int TrackNumber { get; set; }
+        public uint TrackNumber { get; set; }
         #endregion
 
 
@@ -58,7 +53,7 @@ namespace Panther.Core.Models
         /// <summary>
         /// Artist
         /// </summary>
-        public Artist Artist { get; set; }
+        public Artist Artist => Album.Artist;
 
         /// <summary>
         /// Playlists

@@ -35,7 +35,7 @@ namespace Panther.Core.Models
         /// <summary>
         /// Album year
         /// </summary>
-        public short Year { get; set; }
+        public uint Year { get; set; }
         #endregion
 
 

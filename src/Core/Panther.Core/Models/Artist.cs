@@ -26,11 +26,6 @@ namespace Panther.Core.Models
         /// Albums
         /// </summary>
         public ICollection<Album> Albums { get; set; }
-
-        /// <summary>
-        /// Songs
-        /// </summary>
-        public ICollection<Song> Songs { get; set; }
         #endregion
 
 
