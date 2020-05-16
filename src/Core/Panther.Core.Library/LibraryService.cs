@@ -21,8 +21,6 @@ namespace Panther.Core.Library
         private readonly IRepository<Playlist> _playlistRepository;
         private readonly IRepository<Song> _songRepository;
 
-        private readonly CancellationTokenSource _cancellationTokenSource;
-
         public LibraryService(
             IMusicExaminerService examiner,
             IOptions<LibrarySettings> settings,
@@ -40,8 +38,6 @@ namespace Panther.Core.Library
             _artistRepository = artistRepository;
             _playlistRepository = playlistRepository;
             _songRepository = songRepository;
-
-            _cancellationTokenSource = new CancellationTokenSource();
         }
 
         #region Accessor methods
@@ -105,14 +101,14 @@ namespace Panther.Core.Library
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task ReinitializeAsync()
+        public async Task ReinitializeAsync(CancellationToken cancellationToken = default)
         {
             await _dbContext.Database.EnsureDeletedAsync();
             await _dbContext.Database.EnsureCreatedAsync();
 
             await Task.WhenAll(
                 _examiner.ExamineAsync(
-                    _settings.Value.SearchLocations, AddSongAsync, _cancellationTokenSource.Token));
+                    _settings.Value.SearchLocations, AddSongAsync, cancellationToken));
         }
 
         public async Task RemoveSongAsync(long songId)

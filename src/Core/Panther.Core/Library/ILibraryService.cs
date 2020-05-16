@@ -1,6 +1,7 @@
 ﻿using Panther.Core.Models;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Panther.Core.Library
@@ -15,7 +16,7 @@ namespace Panther.Core.Library
         Task AddSongAsync(string fileName);
         Task AddSongAsync(string fileName, Stream songStream);
 
-        Task ReinitializeAsync();
+        Task ReinitializeAsync(CancellationToken cancellationToken = default);
 
         Task RemoveAlbumAsync(long albumId);
         Task RemoveAlbumAsync(Album album);
