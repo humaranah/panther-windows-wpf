@@ -1,27 +1,28 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Panther.Core.DependencyInjection.Extensions;
 using Panther.NetCore.Extensions;
 using System;
 using System.IO;
-using System.Linq;
 
 namespace Panther.NetCore
 {
     public static class Startup
     {
-        public static IConfiguration InitConfiguration()
+        public static void InitConfiguration(IConfigurationBuilder builder)
         {
-            var configBuilder = new ConfigurationBuilder()
+            builder
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", false, true);
-
-            return configBuilder.Build();
         }
 
-        public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
         {
+            var configuration = context.Configuration;
+
             services
+                .AddDataServices()
                 .AddLibraryServices()
                 .AddPlayerServices()
                 .AddPlayerQueueServices(configuration)
