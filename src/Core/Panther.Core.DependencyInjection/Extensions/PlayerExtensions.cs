@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Panther.Core.Player;
 using Panther.Core.Player.Settings;
+using TagLib;
 
 namespace Panther.Core.DependencyInjection.Extensions
 {
@@ -10,7 +11,8 @@ namespace Panther.Core.DependencyInjection.Extensions
         public static IServiceCollection AddPlayerServices(this IServiceCollection services)
         {
             return services
-                .AddSingleton<AudioFileReaderAccessor>()
+                .AddSingleton<CurrentAudioFileReaderAccessor>()
+                .AddSingleton<IAudioInformationReader<File>, CurrentAudioInformationReader>()
                 .AddSingleton<IPlayerService, PlayerService>();
         }
 
