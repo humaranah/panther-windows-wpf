@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Panther.Windows.Views.Themes">
+
+    <DropShadowEffect
+        x:Key="BlackShadow"
+        BlurRadius="5"
+        Opacity="1"
+        ShadowDepth="0"
+        Color="Black" />
+
+</ResourceDictionary>
