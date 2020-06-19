@@ -1,6 +1,7 @@
 ﻿using Panther.Windows.Views.ViewModels;
 using System.Linq;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Panther.Windows.Views
 {
@@ -9,12 +10,16 @@ namespace Panther.Windows.Views
     /// </summary>
     public partial class MiniPlayerWindow : Window
     {
-        private MiniPlayerViewModel ViewModel => DataContext as MiniPlayerViewModel;
+        private readonly DispatcherTimer _timer;
 
-        public MiniPlayerWindow(MiniPlayerViewModel viewModel)
+        private IPlayerViewModel ViewModel => DataContext as IPlayerViewModel;
+
+        public MiniPlayerWindow(IPlayerViewModel viewModel, DispatcherTimer timer)
         {
             InitializeComponent();
             DataContext = viewModel;
+            _timer = timer;
+            _timer.Tick += (s, e) => ViewModel.RaisePropertyChanged(nameof(ViewModel.Position));
         }
 
         private void OnFileDrop(object sender, DragEventArgs e)
@@ -24,9 +29,15 @@ namespace Panther.Windows.Views
                 return;
             }
 
+            if (_timer.IsEnabled)
+            {
+                _timer.Stop();
+            }
+
             var file = (e.Data.GetData(DataFormats.FileDrop) as string[])
                     .First();
             ViewModel.LoadFile(file);
+            _timer.Start();
         }
     }
 }

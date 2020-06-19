@@ -2,54 +2,148 @@
     x:Class="Panther.Windows.Views.MiniPlayerWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cv="clr-namespace:Panther.Windows.Views.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:Panther.Windows.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Panther"
     Width="360"
     Height="360"
+    ResizeMode="CanMinimize"
     mc:Ignorable="d">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/MiniPlayer.xaml" />
+                <ResourceDictionary>
+                    <BooleanToVisibilityConverter x:Key="VisibleIfTrue" />
+                    <cv:TagLibPictureToBitmapSourceConverter x:Key="ImageSourceConverter" />
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
     <Grid
+        x:Name="MainGrid"
         AllowDrop="True"
         Background="Black"
         Drop="OnFileDrop">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
             <RowDefinition />
-            <RowDefinition Height="60" />
+            <RowDefinition Height="100" />
         </Grid.RowDefinitions>
 
-        <Image Grid.RowSpan="2" />
-        <DockPanel>
-            <DockPanel.Background>
-                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="{DynamicResource {x:Static SystemColors.InactiveBorderColorKey}}" />
-                    <GradientStop Offset="0.7" Color="#66FFFFFF" />
-                    <GradientStop Offset="1" Color="#00FFFFFF" />
-                </LinearGradientBrush>
-            </DockPanel.Background>
-            <TextBlock
-                Margin="7,3"
-                DockPanel.Dock="Left"
-                Foreground="Black"
-                Text="Song title" />
-        </DockPanel>
-        <Grid Grid.Row="2">
+        <Image
+            Grid.RowSpan="3"
+            Source="{Binding AlbumArt, Converter={StaticResource ImageSourceConverter}}"
+            Stretch="UniformToFill" />
+
+        <Grid Style="{StaticResource FadeGrid}">
             <Grid.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Offset="0" Color="#00FFFFFF" />
-                    <GradientStop Offset="0.3" Color="#66FFFFFF" />
-                    <GradientStop Offset="1" Color="{DynamicResource {x:Static SystemColors.InactiveBorderColorKey}}" />
+                    <GradientStop Offset="0" Color="Black" />
+                    <GradientStop Offset="0.7" Color="#66000000" />
+                    <GradientStop Offset="1" Color="#00000000" />
                 </LinearGradientBrush>
             </Grid.Background>
+            <TextBlock
+                Margin="7,3"
+                HorizontalAlignment="Left"
+                Foreground="White"
+                Text="{Binding SongInfo}" />
+        </Grid>
+
+        <Grid Grid.Row="2" Style="{StaticResource FadeGrid}">
+
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Offset="0" Color="#00000000" />
+                    <GradientStop Offset="0.2" Color="#66000000" />
+                    <GradientStop Offset="1" Color="Black" />
+                </LinearGradientBrush>
+            </Grid.Background>
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="60" />
+            </Grid.RowDefinitions>
+
+            <Slider
+                x:Name="SeekBar"
+                Grid.Row="1"
+                Grid.ColumnSpan="6"
+                Maximum="{Binding Length}"
+                Style="{StaticResource SeekBar}"
+                Value="{Binding Position}" />
+
+            <CheckBox
+                Grid.Row="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
+            <CheckBox
+                Grid.Row="2"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
+
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                Width="32"
+                Height="32"
+                Style="{StaticResource RoundedButton}">
+                <Polygon Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" Points="0,0 0,10 2,10 2,5 7,10 7,5 12,10 12,0 7,5 7,0 2,5 2,0" />
+            </Button>
+            <ToggleButton
+                Grid.Row="2"
+                Grid.Column="3"
+                IsChecked="{Binding IsPlaying}"
+                Style="{StaticResource PlayButton}" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="4"
+                Width="32"
+                Height="32"
+                Style="{StaticResource RoundedButton}">
+                <Polygon Fill="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType=Button}}" Points="0,0 0,10 5,5 5,10 10,5 10,10 12,10 12,0 10,0 10,5 5,0 5,5" />
+            </Button>
+
+            <Grid
+                Grid.Row="2"
+                Grid.Column="5"
+                Margin="7,0"
+                VerticalAlignment="Center">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+                <Slider
+                    Margin="7,0"
+                    LargeChange="10"
+                    Maximum="100"
+                    SmallChange="1"
+                    Style="{StaticResource SeekBar}"
+                    Value="{Binding Volume}" />
+                <TextBlock
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Foreground="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}"
+                    Text="{Binding Volume}" />
+            </Grid>
         </Grid>
     </Grid>
 </Window>
