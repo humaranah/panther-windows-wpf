@@ -13,10 +13,10 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.4" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.4" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="3.1.4" />
+    <PackageReference Include="Panther.Core.DependencyInjection" Version="1.0.0-alpha" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Panther.Core.DependencyInjection\Panther.Core.DependencyInjection.csproj" />
     <ProjectReference Include="..\Desktop\Windows\Panther.Windows.Views\Panther.Windows.Views.csproj" />
   </ItemGroup>
 
